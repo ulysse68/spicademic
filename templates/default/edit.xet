@@ -1,0 +1,503 @@
+<?xml version="1.0"?>
+<!-- $Id$ -->
+<overlay>
+	<template id="spicademic.edit.general" template="" lang="" group="0" version="1.000">
+		<grid width="100%">
+			<columns>
+				<column/>
+				<column/>
+				<column/>
+				<column/>
+			</columns>
+			<rows>
+				<row>
+					<description span="all" class="redItalic" align="center" id="help_general"/>
+					<description/>
+					<description/>
+					<description/>
+				</row>
+				<row class="row">
+					<description class="bold" value="Address"/>
+					<textbox size="100" span="all" id="publi_address" no_lang="1" needed="1" blur="city, country"/>
+				</row>
+				<row>
+					<description class="bold" value="Keywords"/>
+					<textbox size="100" span="all" no_lang="1" id="publi_keywords" needed="1" blur="keyword1, keyword2, ..."/>
+				</row>
+				<row>
+					<description class="bold" value="Abstract"/>
+					<textbox multiline="true" rows="10" cols="75" span="all" id="publi_abstract" no_lang="1" needed="1"/>
+				</row>
+				<row class="row">
+					<description class="bold" value="Description"/>
+					<textbox multiline="true" rows="10" cols="75" span="all" id="publi_description" no_lang="1"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="spicademic.edit.subject" template="" lang="" group="0" version="1.000">
+		<grid>
+			<columns>
+				<column/>
+			</columns>
+			<rows>
+				<row>
+					<listbox rows="20"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="spicademic.edit.contact" template="" lang="" group="0" version="1.000">
+		<grid width="100%" height="100%" overflow="auto" id="contact">
+			<columns>
+				<column width="1"/>
+				<column width="200"/>
+				<column/>
+				<column/>
+				<column width="200"/>
+				<column/>
+				<column/>
+			</columns>
+			<rows>
+				<row>
+					<description span="all" class="redItalic" align="center" id="help_contact"/>
+					<description/>
+					<description/>
+					<description/>
+					<description/>
+					<description/>
+					<description/>
+				</row>
+				<row class="row" disabled="@no_add">
+					<link-entry id="compte" options="addressbook" span="4"/>
+					<menulist>
+						<menupopup class="selectRole" label="Role" id="role"/>
+					</menulist>
+					<button label="Add" align="center" id="button[add_contact]" span="2"/>
+				</row>
+				<row class="th">
+					<description/>
+					<description value="Contact name"/>
+					<description value="Phone"/>
+					<description value="Email"/>
+					<description value="Role"/>
+					<description value="Creation date"/>
+					<description value="Actions"/>
+				</row>
+				<row class="row" valign="top" disabled="@hidecontact">
+					<image rows="1" cols="2" align="center" src="group"/>
+					<link readonly="true" id="${row}[contact_id]" options="addressbook"/>
+					<url-phone readonly="true" id="${row}[tel_work]"/>
+					<url-email readonly="true" id="${row}[email]"/>
+					<menulist>
+						<menupopup id="${row}[contact_dossier_role]" no_lang="1" readonly="true"/>
+					</menulist>
+					<date id="${row}[creation_date]" readonly="true"/>
+					<hbox rows="1" cols="2" align="center" onchange="1">
+						<button rows="1" cols="2" align="center" label="Delete" id="delete[$row_cont[contact_id]]" image="delete"/>
+					</hbox>
+				</row>
+			</rows>
+		</grid>
+		<styles>
+			.selectRole select { width: 100%; }
+		</styles>
+	</template>
+	<template id="spicademic.edit.presentation" template="" lang="" group="0" version="1.000">
+		<grid>
+			<columns>
+				<column/>
+				<column/>
+			</columns>
+			<rows>
+				<row>
+					<description value="Congress" class="bold"/>
+					<textbox size="100" id="publi_congress" no_lang="1"/>
+				</row>
+				<row>
+					<description class="bold" value="Organizer"/>
+					<textbox size="100" id="publi_organizer" no_lang="1"/>
+				</row>
+				<row>
+					<description class="bold" value="Inviter"/>
+					<textbox size="100" id="publi_inviter" no_lang="1"/>
+				</row>
+				<row>
+					<description class="bold" value="Framework"/>
+					<textbox size="100" id="publi_framework" no_lang="1"/>
+				</row>
+				<row>
+					<description class="bold" value="Date start"/>
+					<date id="publi_datefrom"/>
+				</row>
+				<row>
+					<description value="Date end" class="bold"/>
+					<date id="publi_dateuntil"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="spicademic.edit.publication" template="" lang="" group="0" version="0.1">
+		<grid>
+			<columns>
+				<column/>
+				<column/>
+				<column/>
+			</columns>
+			<rows>
+				<row>
+					<description/>
+					<description span="all" class="redItalic" value="help_tab_details" align="center"/>
+					<description/>
+				</row>
+				<row>
+					<description class="bold" value="Booktitle"/>
+					<textbox size="100" no_lang="1" id="publi_booktitle"/>
+					<description class="greyItalic" value="help_booktitle"/>
+				</row>
+				<row>
+					<description class="bold" value="Chapter"/>
+					<textbox size="50" span="all" no_lang="1" id="publi_chapter"/>
+				</row>
+				<row>
+					<description class="bold" value="Crossref"/>
+					<textbox size="50" span="all" no_lang="1" id="publi_crossref"/>
+				</row>
+				<row>
+					<description class="bold" value="Edition"/>
+					<textbox size="50" span="all" no_lang="1" id="publi_edition"/>
+				</row>
+				<row>
+					<description value="Editor" class="bold"/>
+					<textbox size="50" span="all" no_lang="1" id="publi_editor"/>
+				</row>
+				<row>
+					<description value="ePrint" class="bold"/>
+					<textbox size="50" span="all" no_lang="1" id="publi_eprint"/>
+				</row>
+				<row>
+					<description class="bold" value="howpublished"/>
+					<menulist>
+						<menupopup/>
+					</menulist>
+					<description/>
+				</row>
+				<row>
+					<description value="institution" class="bold"/>
+					<textbox size="50" span="all" no_lang="1" id="publi_institution"/>
+				</row>
+				<row>
+					<description value="Journal" class="bold"/>
+					<textbox size="100" span="all" no_lang="1" id="publi_journal"/>
+				</row>
+				<row>
+					<description value="key" class="bold"/>
+					<textbox size="50" span="all" no_lang="1" id="publi_key"/>
+				</row>
+				<row>
+					<description value="month" class="bold"/>
+					<menulist>
+						<menupopup type="select-month" id="publi_month"/>
+					</menulist>
+					<description/>
+				</row>
+				<row>
+					<description value="note" class="bold"/>
+					<textbox size="50" span="all" no_lang="1" id="publi_note"/>
+				</row>
+				<row>
+					<description value="Number" class="bold"/>
+					<description/>
+					<description/>
+				</row>
+				<row>
+					<description value="Organization" class="bold"/>
+					<textbox id="publi_organization"/>
+					<description/>
+				</row>
+				<row>
+					<description class="bold" value="Pages"/>
+					<textbox id="publi_pages" no_lang="1"/>
+					<description/>
+				</row>
+				<row>
+					<description class="bold" value="Publisher"/>
+					<description id="publi_publisher" no_lang="1"/>
+					<description/>
+				</row>
+				<row>
+					<description class="bold" value="School"/>
+					<description id="publi_school"/>
+					<description/>
+				</row>
+				<row>
+					<description class="bold" value="Series"/>
+					<description id="publi_series"/>
+					<description/>
+				</row>
+				<row>
+					<description class="bold" value="Volume"/>
+					<description id="publi_volume"/>
+					<description/>
+				</row>
+				<row>
+					<template id="spicademic.edit.presentation" span="all"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="spicademic.edit.files.list" template="" lang="" group="0" version="1.000">
+		<grid width="100%" id="files">
+			<columns>
+				<column/>
+				<column/>
+				<column/>
+				<column/>
+				<column/>
+				<column/>
+			</columns>
+			<rows>
+				<row class="th">
+					<description/>
+					<description/>
+					<description/>
+					<description/>
+					<description/>
+					<description class="bwhite"/>
+				</row>
+				<row class="th">
+					<description align="center" value="Id" class="bold"/>
+					<description class="bold" value="File"/>
+					<description align="center" value="Import date" class="bold"/>
+					<description align="center" value="Updated by" class="bold"/>
+					<description align="center" value="status" class="bold"/>
+					<description align="center" value="Actions" class="bold"/>
+				</row>
+				<row class="row">
+					<int no_lang="1" readonly="true" align="center" id="${row}[fichier_id]"/>
+					<vfs id="${row}[file]"/>
+					<date align="center" readonly="true" id="${row}[creation_date]"/>
+					<menulist>
+						<menupopup type="select-account" align="center" readonly="true" id="${row}[creator]" options=","/>
+					</menulist>
+					<menulist>
+						<menupopup align="center" no_lang="1" readonly="true" id="${row}[fichier_statut]" options=","/>
+					</menulist>
+					<hbox>
+						<button align="center" label="Download" id="download[$row_cont[file_id]]" image="filesave" onclick="window.open(egw::link('/index.php','menuaction=spifiling.fichier_ui.download&amp;id=$row_cont[fichier_id]'),'_blank','dependent=yes,width=500,height=560,scrollbars=yes,status=yes'); return false;"/>
+						<button align="center" label="View" id="View[$row_cont[fichier_id]]" image="view" onclick="window.open(egw::link('/index.php','menuaction=spifiling.fichier_ui.edit&amp;id=$row_cont[fichier_id]'),'_blank','dependent=yes,width=990,height=600,scrollbars=yes,status=yes'); return false;"/>
+					</hbox>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="spicademic.edit.files" template="" lang="" group="0" version="1.000">
+		<grid width="100%">
+			<columns>
+				<column/>
+				<column/>
+			</columns>
+			<rows>
+				<row>
+					<description span="all" class="redItalic" align="center" id="msg_image"/>
+					<description/>
+				</row>
+				<row>
+					<description span="all" class="redItalic" align="center" id="help_file"/>
+					<description/>
+				</row>
+				<row disabled="@hideupload">
+					<hbox>
+						<textbox id="upload_name" label="Title"/>
+						<file id="upload_file" label="File"/>
+						<button label="Upload file" id="button[upload_file]"/>
+					</hbox>
+					<description/>
+				</row>
+				<row>
+					<template span="all" id="list"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="spicademic.edit.comment" template="" lang="" group="0" version="1.000">
+		<grid width="100%">
+			<columns>
+				<column/>
+			</columns>
+			<rows>
+				<row>
+					<description span="all" class="redItalic" align="center" id="help_comment"/>
+				</row>
+				<row>
+					<htmlarea height="200" toolbar="false" id="dossier_comment" span="all" class="bold" label="Comment" onchange="testchar();" no_lang="1" needed="1"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="spicademic.edit.link" template="" lang="" group="0" version="1.000">
+		<grid>
+			<columns>
+				<column width="50%"/>
+				<column/>
+			</columns>
+			<rows>
+				<row class="th" disabled="@no_links">
+					<description span="all" value="Create new links"/>
+				</row>
+				<row disabled="@status_only">
+					<link-to span="all" id="link_to"/>
+				</row>
+				<row class="th">
+					<description span="all" value="Existing links"/>
+				</row>
+				<row class="row_off">
+					<link-list span="all" id="link_to"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="spicademic.edit.history" template="" lang="" group="0" version="1.000">
+		<grid width="100%" height="250" overflow="auto">
+			<columns>
+				<column width="10%"/>
+				<column width="60%"/>
+			</columns>
+			<rows>
+				<row>
+					<historylog id="history" span="all"/>
+				</row>
+				<row>
+					<description/>
+					<description/>
+				</row>
+				<row class="row">
+					<description value="Creation Date" class="bold"/>
+					<date-time id="creation_date" readonly="true"/>
+				</row>
+				<row class="row">
+					<description value="Created by" class="bold"/>
+					<menulist>
+						<menupopup type="select-account" id="creator_id" readonly="true"/>
+					</menulist>
+				</row>
+				<row class="row">
+					<description value="Change date" class="bold"/>
+					<date-time id="change_date" readonly="true"/>
+				</row>
+				<row class="row">
+					<description value="Changed by" class="bold"/>
+					<menulist>
+						<menupopup type="select-account" id="modifier_id" readonly="true"/>
+					</menulist>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="spicademic.edit" template="" lang="" group="0" version="1.000">
+		<grid width="100%">
+			<columns>
+				<column width="100"/>
+				<column/>
+				<column/>
+				<column/>
+			</columns>
+			<rows>
+				<row>
+					<description span="all" class="redItalic" id="msg" align="center"/>
+					<description/>
+					<description/>
+					<description/>
+				</row>
+				<row class="th" disabled="!@dossier_id">
+					<hbox span="all">
+						<description class="bold" value="#" id="dossier_id"/>
+						<description readonly="true" id="dossier_titre" value="-"/>
+					</hbox>
+				</row>
+				<row class="th" disabled="@dossier_id">
+					<description span="all" class="bold" value="New publication"/>
+					<description/>
+					<description/>
+					<description/>
+				</row>
+				<row class="row">
+					<description class="bold" value="Title"/>
+					<textbox no_lang="1" id="publi_title" size="100" needed="1" span="all"/>
+				</row>
+				<row class="row">
+					<description class="bold" value="URL"/>
+					<url options="100" id="publ_url" span="all" no_lang="1"/>
+				</row>
+				<row class="row">
+					<description value="Language" class="bold"/>
+					<menulist>
+						<menupopup type="select-lang" options="Select one," id="publi_language" needed="1"/>
+					</menulist>
+					<description value="Status" class="bold"/>
+					<menulist>
+						<menupopup needed="1" no_lang="1" id="dossier_status" options="Select One"/>
+					</menulist>
+				</row>
+				<row class="row">
+					<description value="Year" class="bold"/>
+					<textbox size="5" no_lang="1" id="publi_year" needed="1"/>
+					<description value="Type" class="bold"/>
+					<menulist>
+						<menupopup options="Select one" no_lang="1" id="publi_type" needed="1"/>
+					</menulist>
+				</row>
+				<row class="row">
+					<description value="Responsible" class="bold"/>
+					<menulist>
+						<menupopup type="select-account" no_lang="1" needed="1" id="dossier_responsible" options="Select One"/>
+					</menulist>
+					<description class="bold" value="Research project"/>
+					<menulist>
+						<menupopup id="publi_ip" options="Select one IP," needed="1"/>
+					</menulist>
+				</row>
+				<row>
+					<tabbox span="all" id="general|subject|contact|publication|files|comment|link|history">
+						<tabs>
+							<tab label="General" statustext=""/>
+							<tab label="Themes" statustext=""/>
+							<tab label="Authors" statustext=""/>
+							<tab label="Details" statustext=""/>
+							<tab label="Files" statustext=""/>
+							<tab label="Comment" statustext=""/>
+							<tab label="Link" statustext=""/>
+							<tab label="History" statustext=""/>
+						</tabs>
+						<tabpanels>
+							<template id="spicademic.edit.general"/>
+							<template id="spicademic.edit.subject"/>
+							<template id="spicademic.edit.contact"/>
+							<template id="spicademic.edit.publication"/>
+							<template id="spicademic.edit.files"/>
+							<template id="spicademic.edit.comment"/>
+							<template id="spicademic.edit.link"/>
+							<template id="spicademic.edit.history"/>
+						</tabpanels>
+					</tabbox>
+				</row>
+				<row>
+					<hbox>
+						<button label="Save" id="button[save]"/>
+						<button label="Apply" id="button[apply]"/>
+						<button label="Cancel" id="button[cancel]"/>
+					</hbox>
+					<description/>
+					<hbox align="right" span="2">
+						<button id="gscholar" image="gscholar"/>
+						<button id="bibtex" image="bibtex"/>
+						<button id="rtf" image="rtf"/>
+						<button id="xml" image="xml"/>
+						<button label="Send by mail" id="mail" image="email"/>
+					</hbox>
+				</row>
+			</rows>
+		</grid>
+		<styles>.bold{font-weight:bold;}</styles>
+	</template>
+</overlay>

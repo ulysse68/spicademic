@@ -1,0 +1,53 @@
+Module SpiCademic 
+
+The SpiCademic module is developed to complete eGroupware with a module to manage academic publications (books, conferences, articles, etc.)
+
+Author
+SPIREA SARL - 16/20 avenue de l'agent Sarre 92700 Colombes - Tél : +33141192772 - Fax : +33147858449 - contact@spirea.fr
+http://www.spirea.fr
+
+License : GPL - This module is copyright 2013 Spirea SARL. This is free software, and as such comes with NO WARRANTY.
+
+Version - Egroupware 1.8
+
+Install
+
+1. Install the SpireAPI module
+- Add the following keywords in the translation referential with the wanted languages
+footer_ses
+footer_ses
+footer_ses_address
+footer_ses_address
+
+2. Install the application SpiCademic
+- copy the folder spicademic to your eGroupware's tree, at the same level as other modules
+- go in egroupware's setup, install the module SpiCademic
+- from eGroupware, as administrator : 
+-- Menu Admin/Applications : check the module is installed and enabled
+-- Menu Admin/Groups : add spicademic to your users (first to your groups...)
+
+3. Configuation
+- check and fill up the referential
+- check available options in the "general"  function under the submenu "admin"
+
+
+Use
+
+1. See online documentation online on www.spirea.fr
+
+2. Summary
+-- All users may create and modify publications
+-- The deletion of publication is not allowed (on purpose), you may define a status to neutralize your cancelled publications.
+-- Once the publication addeed, the tabs "Authors" and "Details" will appear.  The elements available on the tab "details" will depend upon the chosen publication type and upon the fields defined for this publication type.
+
+The software is designed to match the BibTex format.
+
+NB: Only users who can access the admin module may see all menus, there are automatically super users...
+
+Uninstall
+
+!!! WARNING !!! Uninstall the application will empty the database and delete all datas link to the application
+
+1. Go in egroupware's setup, select "remove" for the SpiCademic application; Click "save".
+
+2. You can then remove the spicademic folder in the eGroupware's tree

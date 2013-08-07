@@ -1,0 +1,274 @@
+%1 field must not be empty	spicademic	en	%1 field must not be empty
+abstract	spicademic	en	Abstract
+access rights	spicademic	en	Access rights
+account	spicademic	en	Account
+actions	spicademic	en	Actions
+add a folder	spicademic	en	Add a folder
+add a publication	spicademic	en	Add a publication
+add child	spicademic	en	Add child
+add extension	spicademic	en	Add extension
+add field	spicademic	en	Add field
+add file type	spicademic	en	Add file type
+add publication type	spicademic	en	Add publication type
+add role	spicademic	en	Add role
+add searchproject	spicademic	en	Add searchproject
+add status	spicademic	en	Add status
+add subject	spicademic	en	Add subject
+add/modify a field	spicademic	en	Add/modify a field
+add/modify a file type	spicademic	en	Add/modify a file type
+add/modify a publication type	spicademic	en	Add/modify a publication type
+add/modify a research project	spicademic	en	Add/modify a research project
+add/modify a role	spicademic	en	Add/modify a role
+add/modify a status	spicademic	en	Add/modify a status
+add/modify a subject	spicademic	en	Add/modify a subject
+add/modify an extension	spicademic	en	Add/modify an extension
+address	spicademic	en	Address
+advandced search	spicademic	en	Advandced search
+all publications	spicademic	en	All publications
+all status	spicademic	en	All status
+all types	spicademic	en	All types
+archived	spicademic	en	Archived
+archived publications	spicademic	en	Archived publications
+archived status	spicademic	en	Archived status
+article	spicademic	en	Article
+author	spicademic	en	Author
+author role	spicademic	en	Author role
+author(s)	spicademic	en	Author(s)
+authorized file extension	spicademic	en	Authorized file extension
+authors	spicademic	en	Authors
+average	spicademic	en	Average
+bibtex	spicademic	en	BibTeX
+bibtex code	spicademic	en	Bibtex code
+bibtex export	spicademic	en	Bibtex export
+booktitle	spicademic	en	Booktitle
+by	spicademic	en	by
+can't add this field, another field already have the same bibtex code	spicademic	en	Can't add this field, another field already have the same bibtex code
+change date	spicademic	en	Change date
+changed by	spicademic	en	Changed by
+chapter	spicademic	en	Chapter
+check all	spicademic	en	Check all
+checksum already exist on this publication for file "%1"	spicademic	en	Checksum already exist on this publication for file "%1"
+city, country	spicademic	en	city, country
+clic here	spicademic	en	Clic here
+click here	spicademic	en	Click here
+code	spicademic	en	Code
+color	spicademic	en	Color
+comment added	spicademic	en	Comment added
+comment text must not be empty	spicademic	en	Comment text must not be empty
+configuration updated	spicademic	en	Configuration updated
+congress	spicademic	en	Congress
+contact already linked to this session	spicademic	en	Contact already linked to this session
+contact name	spicademic	en	Contact name
+contacts	spicademic	en	Contacts
+create new links	spicademic	en	Create new links
+creation date	spicademic	en	Creation Date
+csv	spicademic	en	CSV
+csv export	spicademic	en	CSV export
+date added	spicademic	en	Date added
+date end	spicademic	en	Date end
+date fields for xml export	spicademic	en	Date fields for XML export
+date modified	spicademic	en	Date modified
+date start	spicademic	en	Date start
+default file status	spicademic	en	Default file status
+default publication status	spicademic	en	Default publication status
+default status	spicademic	en	Default status
+default status value for new files	spicademic	en	Default status value for new files
+default status value for new publications	spicademic	en	Default status value for new publications
+default value	spicademic	en	Default Value
+delivery address	spicademic	en	Delivery address
+doi	spicademic	en	DOI
+doi url	spicademic	en	DOI url
+down	spicademic	en	Down
+download	spicademic	en	Download
+download date	spicademic	en	Download date
+downloads	spicademic	en	Downloads
+edit extension	spicademic	en	Edit extension
+edit field	spicademic	en	Edit field
+edit file	spicademic	en	Edit file
+edit file type	spicademic	en	Edit file type
+edit publication	spicademic	en	Edit publication
+edit publication type	spicademic	en	Edit publication type
+edit role	spicademic	en	Edit role
+edit searchproject	spicademic	en	Edit searchproject
+edit status	spicademic	en	Edit status
+edit subject	spicademic	en	Edit subject
+editor role	spicademic	en	Editor role
+empty	spicademic	en	Empty
+error uploading file!	spicademic	en	Error uploading file!
+error while saving	spicademic	en	Error while saving
+existing links	spicademic	en	Existing links
+export	spicademic	en	Export
+extension	spicademic	en	extension
+extension "%1" is not authorized !!!	spicademic	en	Extension "%1" is not authorized !!!
+extension created	spicademic	en	Extension created
+extension deleted	spicademic	en	extension deleted
+extension management	spicademic	en	Extension Management
+extension updated	spicademic	en	Extension updated
+external url	spicademic	en	External URL
+field added successfully	spicademic	en	Field added successfully
+field created	spicademic	en	field created
+field deleted successfully	spicademic	en	Field deleted successfully
+field updated	spicademic	en	field updated
+fields management	spicademic	en	Fields management
+file "%1" already exists (two files can't have the same name)	spicademic	en	File "%1" already exists (two files can't have the same name)
+file name	spicademic	en	File name
+file name must not exceed %1 caracters	spicademic	en	File name must not exceed %1 caracters
+file status	spicademic	en	File status
+file type created	spicademic	en	file type created
+file type management	spicademic	en	file type Management
+file type updated	spicademic	en	file type updated
+file types	spicademic	en	File types
+file uploaded successfully	spicademic	en	File uploaded successfully
+framework	spicademic	en	Framework
+from	spicademic	en	From
+general	spicademic	en	General
+google scholar	spicademic	en	Google scholar
+group allowed to view and modify anything (in addition to egroupware's admins)	spicademic	en	Group allowed to view and modify anything (in addition to egroupware's admins)
+hidden	spicademic	en	Hidden
+history	spicademic	en	History
+icon	spicademic	en	Icon
+id	spicademic	en	ID
+import date	spicademic	en	Import date
+in charge	spicademic	en	in charge
+inactive	spicademic	en	Inactive
+institution	spicademic	en	institution
+internal url	spicademic	en	Internal URL
+inviter	spicademic	en	Inviter
+journal	spicademic	en	Journal
+keyword1, keyword2, ...	spicademic	en	keyword1, keyword2, ...
+label already exist for an existing field	spicademic	en	Label already exist for an existing field
+length	spicademic	en	Length
+level	spicademic	en	Level
+link to the publication	spicademic	en	Link to the publication
+mail	spicademic	en	Mail
+management group	spicademic	en	Management group
+mandatory	spicademic	en	Mandatory
+max. length	spicademic	en	Max. length
+max. value	spicademic	en	Max. value
+min. length	spicademic	en	Min. length
+min. value	spicademic	en	Min. value
+misc	spicademic	en	Misc
+modification date	spicademic	en	Modification date
+modified by	spicademic	en	Modified by
+modify a file	spicademic	en	Modify a file
+negative	spicademic	en	Negative
+new	spicademic	en	New
+new comment	spicademic	en	New comment
+new publication	spicademic	en	New publication
+not transmitted	spicademic	en	Not transmitted
+notification failed	spicademic	en	Notification failed
+notification sent successfull	spicademic	en	Notification sent successfull
+number	spicademic	en	Number
+optional	spicademic	en	Optional
+order	spicademic	en	Order
+ordre	spicademic	en	Ordre
+organization	spicademic	en	Organization
+organizer	spicademic	en	Organizer
+pages	spicademic	en	Pages
+parent	spicademic	en	Parent
+pdf	spicademic	en	PDF
+peer review	spicademic	en	Peer review
+pending publications	spicademic	en	Pending publications
+pending status	spicademic	en	Pending status
+permission denied, please contact your administrator!!!	spicademic	en	Permission denied, please contact your administrator!!!
+phone	spicademic	en	Phone
+please contact your administrator	spicademic	en	Please contact your administrator
+please enter a title	spicademic	en	Please enter a title
+please select a file	spicademic	en	Please select a file
+please select an account, a contact or enter new value but do not use more than one of these options at once	spicademic	en	Please select an account, a contact or enter new value but do not use more than one of these options at once
+please select an existing contact or set a first name and last name to create a new one	spicademic	en	Please select an existing contact OR set a first name AND last name to create a new one
+positive	spicademic	en	Positive
+possible following status	spicademic	en	Possible following status
+presentation	spicademic	en	Presentation
+print pdf	spicademic	en	Print PDF
+publication	spicademic	en	Publication
+publication archived status	spicademic	en	Publication archived status
+publication created	spicademic	en	Publication created
+publication notification	spicademic	en	Publication notification
+publication pending status	spicademic	en	Publication pending status
+publication type created	spicademic	en	publication type created
+publication type management	spicademic	en	Publication type Management
+publication type updated	spicademic	en	publication type updated
+publication updated	spicademic	en	Publication updated
+publication validated status	spicademic	en	Publication validated status
+publication will be readonly	spicademic	en	Publication will be readonly
+publications	spicademic	en	Publications
+publications & presentations	spicademic	en	Publications & presentations
+publications per author	spicademic	en	Publications per author
+publications per group	spicademic	en	Publications per group
+publications per subject	spicademic	en	Publications per subject
+publications under validation	spicademic	en	Publications under validation
+published	spicademic	en	Published
+read-only	spicademic	en	Read-only
+repository	spicademic	en	Repository
+research group	spicademic	en	Research group
+research project	spicademic	en	Research project
+reset search	spicademic	en	Reset search
+responsible	spicademic	en	Responsible
+reviewer	spicademic	en	Reviewer
+reviews	spicademic	en	Reviews
+ris	spicademic	en	RIS
+ris code	spicademic	en	RIS code
+ris export	spicademic	en	RIS export
+role	spicademic	en	Role
+role created	spicademic	en	Role created
+role management	spicademic	en	Role Management
+role updated	spicademic	en	Role updated
+roles	spicademic	en	Roles
+rows	spicademic	en	Rows
+rtf	spicademic	en	RTF
+rtf export	spicademic	en	RTF export
+school	spicademic	en	School
+scope	spicademic	en	Scope
+search criteria	spicademic	en	Search criteria
+search extension '%1'	spicademic	en	Search extension '%1'
+search file type '%1'	spicademic	en	Search file type '%1'
+search for '%1'	spicademic	en	Search for '%1'
+search project	spicademic	en	Search project
+search publication type '%1'	spicademic	en	Search publication type '%1'
+search role '%1'	spicademic	en	Search role '%1'
+search searchproject '%1'	spicademic	en	Search searchproject '%1'
+search status '%1'	spicademic	en	Search status '%1'
+search subject '%1'	spicademic	en	Search subject '%1'
+searchproject created	spicademic	en	searchproject created
+searchproject management	spicademic	en	searchproject Management
+searchproject updated	spicademic	en	searchproject updated
+select an action...	spicademic	en	Select an action...
+select box	spicademic	en	Select Box
+select one ip	spicademic	en	Select one IP
+selected file can't be empty	spicademic	en	Selected file can't be empty
+send by mail	spicademic	en	Send by mail
+speaker	spicademic	en	Speaker
+spicademic	common	en	SpiCademic
+statistics	spicademic	en	Statistics
+status created	spicademic	en	status created
+status deleted	spicademic	en	Status deleted
+status management	spicademic	en	Status Management
+status updated	spicademic	en	status updated
+subject created	spicademic	en	subject created
+subject management	spicademic	en	subject Management
+subject updated	spicademic	en	subject updated
+subjects	spicademic	en	Subjects
+team	spicademic	en	team
+tel	spicademic	en	Tel
+terminated status	spicademic	en	Terminated status
+text	spicademic	en	Text
+the contact must have one role to be registered	spicademic	en	The contact must have one role to be registered
+themes	spicademic	en	Themes
+thesis supervisor	spicademic	en	Thesis supervisor
+to be validated	spicademic	en	To be validated
+translator	spicademic	en	Translator
+translator role	spicademic	en	Translator role
+up	spicademic	en	Up
+updated by	spicademic	en	Updated by
+upload file	spicademic	en	Upload file
+user already linked to this session	spicademic	en	User already linked to this session
+user manual	spicademic	en	User Manual
+validated publications	spicademic	en	Validated publications
+visa	spicademic	en	Visa
+volume	spicademic	en	Volume
+whole query	spicademic	en	whole query
+xml	spicademic	en	XML
+xml code	spicademic	en	XML code
+xml export	spicademic	en	XML export
+you need to select some publications first	spicademic	en	You need to select some publications first

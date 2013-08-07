@@ -1,0 +1,54 @@
+Logiciel SpiCademic
+
+Ce logiciel est un programme informatique d'administration en ligne de publications et particulièrement de publications académiques
+
+Auteur
+Société SPIREA SARL - 16/20 avenue de l'agent Sarre 92700 Colombes - Tél : 0141192772 - Fax : 0147858449 - contact@spirea.fr
+http://www.spirea.fr
+
+Licence : GPL
+
+Version - Egroupware 1.8
+
+Etapes d'installation
+
+1. Installer le module SpireAPI
+- ajouter les mots clé suivants dans les traductions (pour les langues souhaitées)
+footer_ses
+footer_ses
+footer_ses_address
+footer_ses_address
+
+
+2. Installer le module SpiCademic
+- copier le répertoire spicademic dans la racine Egroupware, au même niveau que les autres modules
+- aller dans le setup egroupware, installer l'application SpiCademic
+- dans egroupware, depuis un compte administrateur : 
+-- Menu Admin/Applications : vérifier que l'application est installée
+-- Menu Admin/Groupes : donner accès à SpiCademic
+
+3. Configuation
+- vérifier et/ou remplir les référentiels
+- vérifier les options disponibles dans la fonction "Général" du sous-menu "Admin"
+
+
+Utilisation
+
+1. Voir la documentation en ligne sur www.spirea.fr
+
+2. Pour résumer...
+-- Chaque utilisateur peut créer et mettre à jour des publications
+-- La suppression est impossible (par conception), il faut passer la publication sur un statut neutralisé (ex : abandonné)
+-- Une fois la publication ajoutée, les onglets "Auteurs" et "Détails" vont apparaître.  Les éléments de l'onglet "détails" dépendent du type de publication et du paramétrage des champs pour ces types de publications.  
+
+Le logiciel est conçu pour générer des fichiers correspondant à la norme Bibtex.
+
+NB: Seules les personnes faisant partie du groupe "Admins" pourront voir tous les menus
+
+Désinstallation
+
+!!! ATTENTION !!! La désinstallation entraine la suppression des tables et des données de l'application.
+
+1. aller dans le setup egroupware, sélectionner la coche "enlever" pour l'application SpiCademic. Cliquez sur "enregistrer"
+
+2. vous pouvez ensuite supprimer le répertoire spicademic dans la racine Egroupware
