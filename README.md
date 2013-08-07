@@ -1,4 +1,4 @@
 spicademic
 ==========
 
-EGroupware application to manage training sessions
+EGroupware application to manage publications
