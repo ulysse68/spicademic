@@ -859,9 +859,6 @@ class spicademic_ui extends spicademic_bo{
 			if(!empty($temp_extra))
 				$rtf .= implode(', ',(array)$temp_extra).'. ';
 
-			if(!empty($publi['publi_year']))
-				$rtf .= $publi['publi_year'].'. ';
-
 			$rtf .= '\par\par ';
 		}
 
