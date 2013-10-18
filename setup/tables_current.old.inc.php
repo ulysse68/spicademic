@@ -52,7 +52,8 @@ $phpgw_baseline = array(
 			'status_creator' => array('type' => 'int','precision' => '4'),
 			'status_created' => array('type' => 'int','precision' => '20'),
 			'status_modifier' => array('type' => 'int','precision' => '4'),
-			'status_modified' => array('type' => 'int','precision' => '20')
+			'status_modified' => array('type' => 'int','precision' => '20'),
+			'status_responsible' => array('type' => 'int','precision' => '4')
 		),
 		'pk' => array('status_id'),
 		'fk' => array(),
@@ -105,7 +106,13 @@ $phpgw_baseline = array(
 			'role_creator' => array('type' => 'int','precision' => '4'),
 			'role_created' => array('type' => 'int','precision' => '20'),
 			'role_modifier' => array('type' => 'int','precision' => '4'),
-			'role_modified' => array('type' => 'int','precision' => '20')
+			'role_modified' => array('type' => 'int','precision' => '20'),
+			'role_bibtex_code' => array('type' => 'varchar','precision' => '50'),
+			'role_ris_code' => array('type' => 'varchar','precision' => '50'),
+			'role_xml_code' => array('type' => 'varchar','precision' => '50'),
+			'role_bibtex_export' => array('type' => 'bool'),
+			'role_xml_export' => array('type' => 'bool'),
+			'role_ris_export' => array('type' => 'bool')
 		),
 		'pk' => array('role_id'),
 		'fk' => array(),

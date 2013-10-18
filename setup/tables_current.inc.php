@@ -106,7 +106,14 @@ $phpgw_baseline = array(
 			'role_creator' => array('type' => 'int','precision' => '4'),
 			'role_created' => array('type' => 'int','precision' => '20'),
 			'role_modifier' => array('type' => 'int','precision' => '4'),
-			'role_modified' => array('type' => 'int','precision' => '20')
+			'role_modified' => array('type' => 'int','precision' => '20'),
+			'role_bibtex_code' => array('type' => 'varchar','precision' => '50'),
+			'role_ris_code' => array('type' => 'varchar','precision' => '50'),
+			'role_xml_code_parent' => array('type' => 'varchar','precision' => '50'),
+			'role_bibtex_export' => array('type' => 'bool'),
+			'role_xml_export' => array('type' => 'bool'),
+			'role_ris_export' => array('type' => 'bool'),
+			'role_xml_code_child' => array('type' => 'varchar','precision' => '50')
 		),
 		'pk' => array('role_id'),
 		'fk' => array(),

@@ -105,6 +105,25 @@ class spicademic_hooks
 				// display_sidebox($appname,lang('SpiCademic'),$file);
 			}
 		}
+
+		/***** Menu Imports *****/
+		if ($GLOBALS['egw_info']['user']['apps']['spicademic'] && $location != 'admin' && $location != 'preferences'){
+			$file = array();
+			
+			if(spicademic_so::is_manager()){
+				$file['Import publication']=$GLOBALS['egw']->link('/index.php','menuaction=spicademic.spicademic_ui.import');
+			}
+			
+			$file['Imported publications']=$GLOBALS['egw']->link('/index.php','menuaction=spicademic.spicademic_ui.index&view=import');
+
+			if ($location == 'publications'){
+				display_section($appname,$file);
+			}else{
+				display_sidebox($appname,lang('Imports'),$file);
+				// display_sidebox($appname,lang('SpiCademic'),$file);
+			}
+		}
+		
 		
 		/***** Menu Référentiels *****/
 		if (($GLOBALS['egw_info']['user']['SpicademicLevel'] >= 20) && $location != 'admin' && $location != 'referentiel'){
@@ -144,7 +163,7 @@ class spicademic_hooks
 		if ($location != 'admin' && $location != 'preferences' && $location != 'spicademic'){
 			$file = array();
 			$file[lang('About').' SpiCademic']=$GLOBALS['egw']->link('/index.php','menuaction=spicademic.spicademic_ui.about');
-			$file[lang('User Manual')]='http://www.spirea.fr/fileadmin/Documentations/spisession/SPI_EGW_USER_APP_SPICADEMIC_DOC_EN.pdf';
+			$file[lang('User Manual')]=$obj_config['manualUrl'];
 			// $file[lang('License').' SpiCademic']=$GLOBALS['egw']->link('/spicademic/about/Licence_spicademic_fr.pdf');
 			display_sidebox($appname,lang('About'.' spicademic'),$file);
 		}

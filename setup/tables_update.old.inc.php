@@ -56,3 +56,49 @@ function spicademic_upgrade1_001()
 	return $GLOBALS['setup_info']['spicademic']['currentver'] = '1.002';
 }
 
+
+function spicademic_upgrade1_002()
+{
+	$GLOBALS['egw_setup']->oProc->AddColumn('spicademic_ref_file_status','status_responsible',array(
+		'type' => 'int',
+		'precision' => '4'
+	));
+
+	return $GLOBALS['setup_info']['spicademic']['currentver'] = '1.003';
+}
+
+
+function spicademic_upgrade1_003()
+{
+	$GLOBALS['egw_setup']->oProc->AddColumn('spicademic_ref_role','role_bibtex_code',array(
+		'type' => 'varchar',
+		'precision' => '50'
+	));
+	$GLOBALS['egw_setup']->oProc->AddColumn('spicademic_ref_role','role_ris_code',array(
+		'type' => 'varchar',
+		'precision' => '50'
+	));
+	$GLOBALS['egw_setup']->oProc->AddColumn('spicademic_ref_role','role_xml_code',array(
+		'type' => 'varchar',
+		'precision' => '50'
+	));
+
+	return $GLOBALS['setup_info']['spicademic']['currentver'] = '1.004';
+}
+
+
+function spicademic_upgrade1_004()
+{
+	$GLOBALS['egw_setup']->oProc->AddColumn('spicademic_ref_role','role_bibtex_export',array(
+		'type' => 'bool'
+	));
+	$GLOBALS['egw_setup']->oProc->AddColumn('spicademic_ref_role','role_xml_export',array(
+		'type' => 'bool'
+	));
+	$GLOBALS['egw_setup']->oProc->AddColumn('spicademic_ref_role','role_ris_export',array(
+		'type' => 'bool'
+	));
+
+	return $GLOBALS['setup_info']['spicademic']['currentver'] = '1.005';
+}
+

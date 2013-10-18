@@ -52,3 +52,9 @@ Désinstallation
 1. aller dans le setup egroupware, sélectionner la coche "enlever" pour l'application SpiCademic. Cliquez sur "enregistrer"
 
 2. vous pouvez ensuite supprimer le répertoire spicademic dans la racine Egroupware
+
+---------
+Mise à jour v1.006 :
+- Autocomplétion des auteurs
+- Fonction d'import de fichier bibtex
+- Evolutions mineures (icônes, messages d'aide, etc...)

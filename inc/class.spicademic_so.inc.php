@@ -110,7 +110,7 @@ class spicademic_so extends so_sql{
 	 * @return array
 	 */
 		$tab_search=array();
-		 foreach((array)$this->so_domaine->db_data_cols as $id=>$value){
+		 foreach((array)$this->db_data_cols as $id=>$value){
 			 $tab_search[$id]=$search;
 		 }
 
@@ -143,7 +143,7 @@ class spicademic_so extends so_sql{
 
 				$this->add_update_subject($info['publi_id'],$info['publi_subject']);
 				// $this->add_update_comment($info['publi_id'],$info['comment']);
-				$this->add_update_extra($info['publi_id'],$_POST['exec']['details']);
+				$this->add_update_extra($info['publi_id'], $info['publi_type'],$_POST['exec']['details']);
 
 				$this->data = $info;
 				$this->data['publi_modified'] = time();
@@ -210,25 +210,29 @@ class spicademic_so extends so_sql{
 		}
 	}
 
-	function add_update_extra($publi_id, $extras){
+	function add_update_extra($publi_id, $type_id, $extras){
 	/**
 	 * Fonction de mise a jour / creation des extra pour la publication $publi_id
 	 *
 	 * @param $publi_id : identifiant de la publication
 	 * @param $extras : extra pour cette publication
 	 */
+		$this->so_extra->delete(array('publi_id' => $publi_id));	
+
 		foreach((array)$extras as $extra){
 			foreach((array)$extra as $field_id => $value){
 				if(is_array($value)) $value = implode(',',$value);
 				
-				$this->so_extra->data = array(
-					'publi_id' => $publi_id,
-					'field_id' => $field_id,
-					'extra_value' => $value,
-					'extra_creator' => $GLOBALS['egw_info']['user']['account_id'],
-					'extra_created' => time()
-				);
-
+				$type_field = $this->so_type_field->read(array('type_id' =>$type_id, 'field_id' => $field_id));
+				if(is_array($type_field)){
+					$this->so_extra->data = array(
+						'publi_id' => $publi_id,
+						'field_id' => $field_id,
+						'extra_value' => $value,
+						'extra_creator' => $GLOBALS['egw_info']['user']['account_id'],
+						'extra_created' => time()
+					);
+				}
 				$this->so_extra->save();
 			}
 		}
@@ -281,7 +285,7 @@ class spicademic_so extends so_sql{
 		$history = array_diff_assoc($content,$old);
 		$infoHistory = $history['history'];
 
-		$FieldIgnore = array('msg','contact|publication|general|url|subject|files|comment|link|history','comment','details','files','contact','history','link_to','publi_modified','publi_modifier','publi_creator','publi_created','button','file_status','file_type','upload_file','upload_name','publi_subject','search','status_only','no_links','hideupload');
+		$FieldIgnore = array('msg','general|publication|contact|subject|files|comment|link|history','comment','details','files','contact','history','link_to','publi_modified','publi_modifier','publi_creator','publi_created','button','file_status','file_type','upload_file','upload_name','publi_subject','search','status_only','no_links','hideupload','general|publication|contact|subject|files|comment|link|history','help_type','publi_type_html','tab_details');
 		$FieldDate = array('');
 		$FieldExternal = array(
 			'publi_status' => array('table' => $this->so_ref_publi_status,'field' => 'status_label'),

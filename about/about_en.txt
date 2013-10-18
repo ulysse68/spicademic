@@ -1,4 +1,4 @@
-Module SpiCademic 
+Application SpiCademic 
 
 The SpiCademic module is developed to complete eGroupware with a module to manage academic publications (books, conferences, articles, etc.)
 
@@ -9,6 +9,14 @@ http://www.spirea.fr
 License : GPL - This module is copyright 2013 Spirea SARL. This is free software, and as such comes with NO WARRANTY.
 
 Version - Egroupware 1.8
+
+Webpage : http://www.spirea.fr/en/egroupware-applications/collaborative-academic-publications-system/
+
+
+Software used or included
+- egroupware
+- fpdf
+
 
 Install
 
@@ -51,3 +59,9 @@ Uninstall
 1. Go in egroupware's setup, select "remove" for the SpiCademic application; Click "save".
 
 2. You can then remove the spicademic folder in the eGroupware's tree
+
+--------
+Update v1.006 :
+- Autocompletion for authors
+- Import function for bibtex files
+- Minor evolutions (icons, help messages, etc...)

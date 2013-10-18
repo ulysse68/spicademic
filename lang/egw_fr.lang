@@ -1,4 +1,6 @@
 %1 field must not be empty	spicademic	fr	Le champ  %1 ne doit pas être vide
+%1 publication failed to be imported	spicademic	fr	%1 publication(s) en erreur lors de l'import
+%1 publication successfully imported	spicademic	fr	%1 publication(s) importée(s) avec succès
 abstract	spicademic	fr	Abrégé
 access rights	spicademic	fr	Droits d'accès
 account	spicademic	fr	Compte
@@ -27,6 +29,7 @@ advandced search	spicademic	fr	Recherche avancée
 all publications	spicademic	fr	Toutes les publications
 all status	spicademic	fr	Tous les statuts
 all types	spicademic	fr	Tous les types
+allow users as authors	spicademic	fr	Autoriser les utilisateurs en tant qu'auteur
 archived	spicademic	fr	Archivé
 archived publications	spicademic	fr	Publications archivées
 archived status	spicademic	fr	Statut archivé
@@ -53,6 +56,7 @@ clic here	spicademic	fr	Cliquer ici
 click here	spicademic	fr	Cliquer ici
 code	spicademic	fr	Code
 color	spicademic	fr	Couleur
+color for mandatory tabs (edit view)	spicademic	fr	Couleur pour les onglets obligatoire (vue edit)
 comment added	spicademic	fr	Commentaire ajouté
 comment text must not be empty	spicademic	fr	Le commentaire ne peut être vide
 configuration updated	spicademic	fr	Configuration mise à jour
@@ -124,11 +128,18 @@ from	spicademic	fr	De
 general	spicademic	fr	Général
 google scholar	spicademic	fr	Google scholar
 group allowed to view and modify anything (in addition to egroupware's admins)	spicademic	fr	Groupe autorisé à tout voir et modifier (en plus des groupes administrateurs egroupware)
+help_import1	spicademic	fr	Sélectionnez un fichier bibtex contenant une ou plusieurs publications et cliquez sur "Importer".
+help_import2	spicademic	fr	Veuillez noter que le champ "auteur" sera ignoré ! Vous devrez complété vos publications dans la vue "Publications importées".
+help_import3	spicademic	fr	Veuillez éviter d'importer des doublons dans la base !
 hidden	spicademic	fr	Masqué
 history	spicademic	fr	Historique
 icon	spicademic	fr	Icône
 id	spicademic	fr	ID
 import date	spicademic	fr	Date d'import
+import publication	spicademic	fr	Import de publications
+imported (to validate)	spicademic	fr	Importée (à valider)
+imported publications	spicademic	fr	Publications importées
+imports	spicademic	fr	Imports
 in charge	spicademic	fr	en charge
 inactive	spicademic	fr	Inactif
 institution	spicademic	fr	institution
@@ -155,7 +166,9 @@ negative	spicademic	fr	Négatif
 new	spicademic	fr	Nouveau
 new comment	spicademic	fr	Nouveau commentaire
 new publication	spicademic	fr	Nouvelle publication
+no file uploaded	spicademic	fr	Aucun fichier mis en ligne
 not transmitted	spicademic	fr	Non transmis
+notice	spicademic	fr	Note
 notification failed	spicademic	fr	Notification échouée
 notification sent successfull	spicademic	fr	Notification envoyée avec succès
 number	spicademic	fr	Nombre
@@ -184,14 +197,18 @@ print pdf	spicademic	fr	Imprimer en pdf
 publication	spicademic	fr	Publication
 publication archived status	spicademic	fr	Statut des publications archivées
 publication created	spicademic	fr	Publication ajoutée
+publication deleted successfully	spicademic	fr	Publication supprimé avec succès
+publication imported status	spicademic	fr	Statut des publications importées
 publication notification	spicademic	fr	Notification de publication
 publication pending status	spicademic	fr	Statut des publications en cours
 publication type created	spicademic	fr	Type de publication créé
 publication type management	spicademic	fr	Gestion des types de publications
+publication type must not be empty	spicademic	fr	Le type de la publication ne doit pas être vide
 publication type updated	spicademic	fr	Type de publication mis à jour
 publication updated	spicademic	fr	Publication mise à jour
 publication validated status	spicademic	fr	Statut des publications validées
 publication will be readonly	spicademic	fr	La publication sera en lecture seule
+publication(s) deleted successfully	spicademic	fr	Publication(s) supprimée(s) avec succès
 publications	spicademic	fr	Publications
 publications & presentations	spicademic	fr	Publications & présentations
 publications per author	spicademic	fr	Publications par auteur
@@ -237,7 +254,9 @@ select an action...	spicademic	fr	Sélectionner une action...
 select box	spicademic	fr	Boîte de sélection
 select one ip	spicademic	fr	Sélectionner un projet...
 selected file can't be empty	spicademic	fr	Le fichier sélectionné ne peut être vide !
+selected file contains no publications	spicademic	fr	Le fichier sélectionné ne contient aucune publications
 send by mail	spicademic	fr	Envoyer par email
+show only authors in the index	spicademic	fr	Voir uniquement les auteurs dans la vue index
 speaker	spicademic	fr	Orateur
 spicademic	common	fr	SpiCademic
 statistics	spicademic	fr	Statistiques
@@ -249,11 +268,13 @@ subject created	spicademic	fr	Sujet créé
 subject management	spicademic	fr	Gestion des sujets
 subject updated	spicademic	fr	Sujet mis à jour
 subjects	spicademic	fr	Sujets/thèmes
+tables	spicademic	fr	Tables
 team	spicademic	fr	Equipe
 tel	spicademic	fr	Tél
 terminated status	spicademic	fr	Statuts terminés
 text	spicademic	fr	Texte
 the contact must have one role to be registered	spicademic	fr	Le contact doit avoir un rôle pour être enregistré
+the type "%1" does not match any available types	spicademic	fr	Le type "%1" ne correspond a aucun type disponible
 themes	spicademic	fr	Thèmes
 thesis supervisor	spicademic	fr	Directeur de thèse
 to be validated	spicademic	fr	A valider
@@ -262,8 +283,10 @@ translator role	spicademic	fr	Rôle "traducteur"
 up	spicademic	fr	Remonter
 updated by	spicademic	fr	Mis à jour par
 upload file	spicademic	fr	Uplader un fichier
+url for the user manual	spicademic	fr	URL du manuel utilisateur
 user already linked to this session	spicademic	fr	Contact déjà lié à cette session
 user manual	spicademic	fr	Manuel utilisateur
+user manual url	spicademic	fr	URL du manuel utilisateur
 validated publications	spicademic	fr	Publications validées
 visa	spicademic	fr	Visa
 volume	spicademic	fr	Volume

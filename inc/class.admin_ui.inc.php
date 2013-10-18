@@ -73,6 +73,7 @@ class admin_ui extends admin_bo{
 			'validated_pub_status' => $this->get_publi_status(),
 			'archived_pub_status' => $this->get_publi_status(),
 			'pending_pub_status' => $this->get_publi_status(),
+			'imported_pub_status' => $this->get_publi_status(),
 			
 			'default_file_status' => $this->get_file_status(),
 

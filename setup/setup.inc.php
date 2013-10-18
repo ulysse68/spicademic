@@ -12,7 +12,7 @@
 
 $setup_info['spicademic']['name'] = 'spicademic';
 $setup_info['spicademic']['title'] = 'Modules to manage academic publications & presentations';
-$setup_info['spicademic']['version'] = '1.003';
+$setup_info['spicademic']['version'] = '1.006';
 $setup_info['spicademic']['app_order'] = 0;
 $setup_info['spicademic']['tables'] = array('spicademic_ref_pub_status','spicademic_ref_pub_status_transition','spicademic_ref_file_status','spicademic_ref_file_status_transition','spicademic_ref_pub_type','spicademic_ref_role','spicademic_ref_file','spicademic_ref_extension','spicademic_ref_subject','spicademic_ref_project','spicademic_ref_field','spicademic_ref_type_field','spicademic_publi','spicademic_publi_extra','spicademic_publi_file','spicademic_publi_comment','spicademic_publi_subject','spicademic_publi_contact');
 $setup_info['spicademic']['enable'] = 1;
@@ -34,11 +34,11 @@ $setup_info['spicademic']['description'] = 'Modules to manage academic publicati
 
 $setup_info['spicademic']['depends'][] = array(
 	'appname' => 'phpgwapi',
-	'versions' => array('1.8')
+	'versions' => array('1.8','1.9','2.0')
 );
 $setup_info['spicademic']['depends'][] = array(
 	'appname' => 'etemplate',
-	'versions' => array('1.8')
+	'versions' => array('1.8','1.9','2.0')
 );
 
 /* The hooks this app includes, needed for hooks registration */
@@ -50,6 +50,9 @@ $setup_info['spicademic']['hooks']['spicademic menu'] = 'spicademic_hooks::all_h
 $setup_info['spicademic']['hooks']['sidebox_menu'] = 'spicademic_hooks::all_hooks'; // affiche le menu sur la gauche de l'appli
 $setup_info['spicademic']['hooks']['search_link'] = 'spicademic_hooks::search_link'; // note : il y avait une faute de frappe !
 $setup_info['spicademic']['hooks']['home'] = 'spicademic_hooks::home'; //Permet d'afficher un hook sur la page d'accueil
+
+
+
 
 
 

@@ -1,4 +1,6 @@
 %1 field must not be empty	spicademic	en	%1 field must not be empty
+%1 publication failed to be imported	spicademic	en	%1 publication failed to be imported
+%1 publication successfully imported	spicademic	en	%1 publication successfully imported
 abstract	spicademic	en	Abstract
 access rights	spicademic	en	Access rights
 account	spicademic	en	Account
@@ -27,6 +29,7 @@ advandced search	spicademic	en	Advandced search
 all publications	spicademic	en	All publications
 all status	spicademic	en	All status
 all types	spicademic	en	All types
+allow users as authors	spicademic	en	Allow users as authors
 archived	spicademic	en	Archived
 archived publications	spicademic	en	Archived publications
 archived status	spicademic	en	Archived status
@@ -53,6 +56,7 @@ clic here	spicademic	en	Clic here
 click here	spicademic	en	Click here
 code	spicademic	en	Code
 color	spicademic	en	Color
+color for mandatory tabs (edit view)	spicademic	en	Color for mandatory tabs (edit view)
 comment added	spicademic	en	Comment added
 comment text must not be empty	spicademic	en	Comment text must not be empty
 configuration updated	spicademic	en	Configuration updated
@@ -124,11 +128,18 @@ from	spicademic	en	From
 general	spicademic	en	General
 google scholar	spicademic	en	Google scholar
 group allowed to view and modify anything (in addition to egroupware's admins)	spicademic	en	Group allowed to view and modify anything (in addition to egroupware's admins)
+help_import1	spicademic	en	Select here a bibtex file containing one or several publications and click "import".
+help_import2	spicademic	en	Please note that the field "author" will be ignored !  You must complete your publications including the authors from the section "imported publications".
+help_import3	spicademic	en	Please avoid to import duplicates in the database !
 hidden	spicademic	en	Hidden
 history	spicademic	en	History
 icon	spicademic	en	Icon
 id	spicademic	en	ID
 import date	spicademic	en	Import date
+import publication	spicademic	en	Import publications
+imported (to validate)	spicademic	en	Imported (to validate)
+imported publications	spicademic	en	Imported publications
+imports	spicademic	en	Imports
 in charge	spicademic	en	in charge
 inactive	spicademic	en	Inactive
 institution	spicademic	en	institution
@@ -155,7 +166,9 @@ negative	spicademic	en	Negative
 new	spicademic	en	New
 new comment	spicademic	en	New comment
 new publication	spicademic	en	New publication
+no file uploaded	spicademic	en	No file uploaded
 not transmitted	spicademic	en	Not transmitted
+notice	spicademic	en	Notice
 notification failed	spicademic	en	Notification failed
 notification sent successfull	spicademic	en	Notification sent successfull
 number	spicademic	en	Number
@@ -184,14 +197,18 @@ print pdf	spicademic	en	Print PDF
 publication	spicademic	en	Publication
 publication archived status	spicademic	en	Publication archived status
 publication created	spicademic	en	Publication created
+publication deleted successfully	spicademic	en	Publication deleted successfully
+publication imported status	spicademic	en	Publication imported status
 publication notification	spicademic	en	Publication notification
 publication pending status	spicademic	en	Publication pending status
 publication type created	spicademic	en	publication type created
 publication type management	spicademic	en	Publication type Management
+publication type must not be empty	spicademic	en	Publication type must not be empty
 publication type updated	spicademic	en	publication type updated
 publication updated	spicademic	en	Publication updated
 publication validated status	spicademic	en	Publication validated status
 publication will be readonly	spicademic	en	Publication will be readonly
+publication(s) deleted successfully	spicademic	en	Publication(s) deleted successfully
 publications	spicademic	en	Publications
 publications & presentations	spicademic	en	Publications & presentations
 publications per author	spicademic	en	Publications per author
@@ -237,7 +254,9 @@ select an action...	spicademic	en	Select an action...
 select box	spicademic	en	Select Box
 select one ip	spicademic	en	Select one IP
 selected file can't be empty	spicademic	en	Selected file can't be empty
+selected file contains no publications	spicademic	en	Selected file contains no publications
 send by mail	spicademic	en	Send by mail
+show only authors in the index	spicademic	en	Show only authors in the index
 speaker	spicademic	en	Speaker
 spicademic	common	en	SpiCademic
 statistics	spicademic	en	Statistics
@@ -249,11 +268,13 @@ subject created	spicademic	en	subject created
 subject management	spicademic	en	subject Management
 subject updated	spicademic	en	subject updated
 subjects	spicademic	en	Subjects
+tables	spicademic	en	Tables
 team	spicademic	en	team
 tel	spicademic	en	Tel
 terminated status	spicademic	en	Terminated status
 text	spicademic	en	Text
 the contact must have one role to be registered	spicademic	en	The contact must have one role to be registered
+the type "%1" does not match any available types	spicademic	en	The type "%1" does not match any available types
 themes	spicademic	en	Themes
 thesis supervisor	spicademic	en	Thesis supervisor
 to be validated	spicademic	en	To be validated
@@ -262,8 +283,10 @@ translator role	spicademic	en	Translator role
 up	spicademic	en	Up
 updated by	spicademic	en	Updated by
 upload file	spicademic	en	Upload file
+url for the user manual	spicademic	en	URL for the user manual
 user already linked to this session	spicademic	en	User already linked to this session
 user manual	spicademic	en	User Manual
+user manual url	spicademic	en	User manual url
 validated publications	spicademic	en	Validated publications
 visa	spicademic	en	Visa
 volume	spicademic	en	Volume

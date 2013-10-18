@@ -74,18 +74,34 @@ class spicademic_bo extends spicademic_so{
 		);
 		$wildcard = '%';
 		$op = 'OR';
-		$search = $query['search'];
+		$fields = '*';
+
+		// $search = $query['search'];
 
 		// Filter2 - Session type filter
 		switch ($query['filter2']) {
 			case 'archived':
-				$query['col_filter']['publi_status'] = $this->obj_config['archived_pub_status'];
+				$query['col_filter']['publi_status'] = explode(',',$this->obj_config['archived_pub_status']);
 				break;
 			case 'validated':
 				$query['col_filter']['publi_status'] = $this->obj_config['validated_pub_status'];
 				break;
 			case 'pending':
 				$query['col_filter']['publi_status'] = explode(',',$this->obj_config['pending_pub_status']);
+				break;
+			case 'import':
+				if(!empty($this->obj_config['imported_pub_status']))
+					$query['col_filter']['publi_status'] = $this->obj_config['imported_pub_status'];
+
+				// Non admin = Uniquement ces propres imports
+				if($GLOBALS['egw_info']['user']['SpicademicLevel'] < 59){
+					$query['col_filter']['publi_responsible'] = $GLOBALS['egw_info']['user']['account_id'];
+				}
+				break;
+			case 'all':
+				if(!empty($this->obj_config['imported_pub_status']))
+					$where[] = 'publi_status <> '.$this->obj_config['imported_pub_status'];
+				
 				break;
 		}
 
@@ -94,8 +110,8 @@ class spicademic_bo extends spicademic_so{
 			$query['col_filter']['publi_type'] = $query['filter'];
 
 		// Recherche avancée - Projet
-		if(!empty($query['publi_project']))
-			$query['col_filter']['publi_project'] = $query['publi_project'];
+		if(!empty($query['nm']['publi_project']))
+			$query['col_filter']['publi_project'] = $query['nm']['publi_project'];
 
 		// Recherche avancée - Année
 		if(!empty($query['publi_year']))
@@ -121,18 +137,57 @@ class spicademic_bo extends spicademic_so{
 		// Rechercher avancée - Auteurs
 		if(!empty($query['authors'])){
 			$where[] = 'contact_add_id IN ('.$query['authors'].')';
-			$inner[] = 'INNER JOIN spicademic_publi_contact ON spicademic_publi_contact.contact_publi = spicademic_publi.publi_id';
+			$inner[] = 'LEFT JOIN spicademic_publi_contact ON spicademic_publi_contact.contact_publi = spicademic_publi.publi_id';
 
 			$order = ' GROUP BY spicademic_publi.publi_id ORDER BY spicademic_publi.'.$temp_order;
 		}
 
-		// Contruction du join
-		if(is_array($inner) && is_array($where)){
-			$join = implode(' ',$inner).' WHERE '.implode(' AND ',$where);
+		// Recherche doit prendre en compte les auteurs
+		if(!empty($query['search'])){
+			if(!in_array('LEFT JOIN spicademic_publi_contact ON spicademic_publi_contact.contact_publi = spicademic_publi.publi_id', $inner))
+				$inner[] = 'LEFT JOIN spicademic_publi_contact ON spicademic_publi_contact.contact_publi = spicademic_publi.publi_id';
+
+			$inner[] = 'LEFT JOIN egw_addressbook ON spicademic_publi_contact.contact_add_id = egw_addressbook.contact_id';
+
+			$search = $this->construct_search($query['search']);
+			$search['n_family'] = $query['search'];
+			$search['n_given'] = $query['search'];
+
+			$order = ' GROUP BY spicademic_publi.publi_id ORDER BY spicademic_publi.'.$temp_order;
 		}
 
+		// Certains tri requiert des joins et des conditions spécifique
+		switch($query['order']){
+			case 'publi_type':
+				$inner[] = 'INNER JOIN spicademic_ref_pub_type ON spicademic_ref_pub_type.type_id = spicademic_publi.publi_type';
+				$order = ' GROUP BY spicademic_publi.publi_id ORDER BY type_title '.$query['sort'];
+				break;
+			case 'publi_responsible':
+				break;
+			case 'authors':
+				if(!in_array('LEFT JOIN spicademic_publi_contact ON spicademic_publi_contact.contact_publi = spicademic_publi.publi_id', $inner))
+					$inner[] = 'LEFT JOIN spicademic_publi_contact ON spicademic_publi_contact.contact_publi = spicademic_publi.publi_id';
+				
+				if(!in_array('LEFT JOIN egw_addressbook ON spicademic_publi_contact.contact_add_id = egw_addressbook.contact_id', $inner))
+					$inner[] = 'LEFT JOIN egw_addressbook ON spicademic_publi_contact.contact_add_id = egw_addressbook.contact_id';
+				
+				$where[] = '(contact_order IN (SELECT MIN(contact_order) FROM spicademic_publi_contact WHERE contact_publi = publi_id) OR contact_order IS NULL)';
 
-		$rows = $this->search($search,false,$order,'',$wildcard,false,$op,$start,$query['col_filter'],$join);
+				$order = ' GROUP BY spicademic_publi.publi_id ORDER BY CONCAT(n_family,n_given) '.$query['sort'];
+				break;
+		}
+
+		// Contruction du join
+		if(is_array($inner)){
+			$join = implode(' ',$inner);
+		}
+
+		if(is_array($where)){
+			$join .= ' WHERE '.implode(' AND ',$where);
+		}
+
+// $this->debug = 5;
+		$rows = $this->search($search,$fields,$order,'',$wildcard,false,$op,$start,$query['col_filter'],$join);
 		
 		foreach((array)$rows as $id => $row){
 			// Simple utilisateur
@@ -149,7 +204,7 @@ class spicademic_bo extends spicademic_so{
 			}
 
 			// Statut archivé
-			if($row['publi_status'] == $this->obj_config['archived_pub_status']){
+			if(in_array($row['publi_status'],explode(',',$this->obj_config['archived_pub_status']))){
 				$readonlys['edit['.$row['publi_id'].']'] = true;
 				$readonlys['view['.$row['publi_id'].']'] = false;
 			}
@@ -177,19 +232,22 @@ class spicademic_bo extends spicademic_so{
 			$rows[$id]['nb_authors'] = count($temp_author);
 			
 			// Récupération de tout les contacts de la publication
-			$authors = $this->so_contact->search(array('contact_publi' => $row['publi_id'],'contact_role' => $this->obj_config['author_role']),false,'contact_order');
+			
+			if($this->obj_config['author_only']){
+				$authors = $this->so_contact->search(array('contact_publi' => $row['publi_id'],'contact_role' => $this->obj_config['author_role']),false,'contact_order');
+			}else{
+				$authors = $this->so_contact->search(array('contact_publi' => $row['publi_id']),false,'contact_order');
+			}
 			foreach((array)$authors as $author){
 				// On récupère le nom de chacun des contacts
 				$contact = $GLOBALS['egw']->contacts->read($author['contact_add_id']);
 				$rows[$id]['authors'] .= $contact['n_family'].' '.$contact['n_given'].'<br />';
 			}
 		
-					/* champs pour l'export csv */
+			/* champs pour l'export csv */
 			if($query['csv_export']==true)
 			{
-				
 				// Champs issus du referentiel...
-				
 				$publi_type_temp = $this->so_ref_publi_type->read($rows[$id]['publi_type']);
 				$rows[$id]['publi_type_export'] = $publi_type_temp['type_code'];
 				unset($publi_type_temp);
@@ -201,9 +259,14 @@ class spicademic_bo extends spicademic_so{
 				$publi_project_temp = $this->so_ref_project->read($rows[$id]['publi_project']);
 				$rows[$id]['publi_project_export'] = $publi_project_temp['proj_code'];
 				unset($publi_project_temp);
-				
 			}
-				
+
+			// Suppression pour admin / gestionnaire et responsable
+			$readonlys['delete['.$row['publi_id'].']'] = true;
+			if($GLOBALS['egw_info']['user']['SpicademicLevel'] > 19 || $row['publi_responsible'] == $GLOBALS['egw_info']['user']['account_id']){
+				$readonlys['delete['.$row['publi_id'].']'] = false;
+			}
+			
 		}
 		
 		return $this->total;	
@@ -300,7 +363,7 @@ class spicademic_bo extends spicademic_so{
 			
 			++$i;
 		}
-		_debug_array($readonlys);
+
 		unset($so_sqlfs);
 		unset($GLOBALS['egw_info']['user']['spicademic_add']);
 		return $return;
@@ -365,20 +428,32 @@ class spicademic_bo extends spicademic_so{
      *
      * @return array
      */
+    	$groups = $GLOBALS['egw']->accounts->memberships($GLOBALS['egw_info']['user']['account_id']);
+
     	$return = array();
 		$info = $this->so_ref_publi_status->read($status_id);
-		$return[$status_id] = $info['status_label'];
+
 		if(!empty($status_id)){
+			$childs[$status_id] = $status_id;
+
 			$transition = $this->so_ref_publi_status_transition->search(array('status_source' => $status_id),false);
 			foreach((array)$transition as $key => $data){
 				$childs[] = $data['status_target'];
 			}
-			foreach($childs as $status_id){
-				$info = $this->so_ref_publi_status->read($status_id);
-				$return[$status_id] = $info['status_label'];
-			}
+			
+			// foreach($childs as $status_id){
+			$info = $this->so_ref_publi_status->search(array('status_id' => $childs), false, 'status_order');
+			foreach((array)$info as $data){
+				// On ajoute le groupe dans la liste seulement si l'utilisateur a les droits sur le statut
+				if(array_key_exists($data['status_group'], $groups) || empty($data['status_group']) || $GLOBALS['egw_info']['user']['SpiqualLevel'] >= 99){
+	    			$return[$data['status_id']] = $data['status_label'];
+	    		}
+	    	}
+			// }
 		}else{
-			$info = $this->so_ref_publi_status->search(array('status_active'=>'1'),false);
+			$return[$status_id] = $info['status_label'];
+
+			$info = $this->so_ref_publi_status->search(array('status_active'=>'1'),false,'status_order');
 	    	foreach((array)$info as $data){
 	    		$return[$data['status_id']] = $data['status_label'];
 	    	}
@@ -387,21 +462,172 @@ class spicademic_bo extends spicademic_so{
 		return $return;
     }
 	
-	function get_publi_type(){
+	function get_publi_type($type='', $selected_id){
     /**
      * Retourne la liste des types de publication
+     *
+     * @return array
+     */
+    	$root_types = $this->get_root_types();
+
+    	$info = $this->so_ref_publi_type->search(array('type_active'=>'1'),false,'type_order');
+    	switch($type){
+    		case 'html':
+    			$return .= '<select name="exec[publi_type]" id="exec[publi_type]" >';
+    			$return .= '<option value="" >'.lang('Select one').'</option>';
+    			break;
+    		case 'help':
+    		case 'rows':
+    			$return = '';
+    			break;
+    		case 'level':
+    		default:
+    			$return = array();
+    			break;
+    	}
+    	
+    	// $i = 1;
+    	// foreach((array)$info as $data){
+    	// 	switch($type){
+	    // 		case 'html':
+	    // 			if(in_array($data['type_id'],$root_types)){
+	    // 				$title = $data['type_title'];
+	    // 			}else{
+	    // 				$title = '-- '.$data['type_title'];
+	    // 			}
+	    // 			$selected = '';
+		   //  		if($data['type_id'] == $selected_id){
+		   //  			$selected = 'selected=selected';
+		   //  		}
+		   //  		$return .= '<option value='.$data['type_id'].' title="'.$data['type_description'].'" '.$selected.' >'.$title.'</option>';
+	    // 			break;
+	    // 		case 'help':
+	    // 			$return .= '&bull; '.$data['type_title'].' : '.$data['type_description']."\n";
+	    // 			break;
+	    // 		case 'rows':
+	    // 			$return[$i]['type_id'] = $data['type_id'];
+    	// 			$return[$i]['type_description'] = $data['type_description'];
+    	// 			++$i;
+	    // 			break;
+	    // 		case 'level':
+	    // 			if(in_array($data['type_id'],$root_types)){
+	    // 				$return[$data['type_id']] = $data['type_title'];
+	    // 			}else{
+	    // 				$return[$data['type_id']] = '-- '.$data['type_title'];
+	    // 			}
+	    // 		default:
+    	// 			$return[$data['type_id']] = $data['type_title'];    			
+	    // 			break;
+	    // 	}
+    	// }
+
+    	foreach((array)$root_types as $type_id){
+    		$type_data = $this->so_ref_publi_type->read($type_id);
+    		switch($type){
+	    		case 'html':
+	    			$selected = '';
+		    		if($type_data['type_id'] == $selected_id){
+		    			$selected = 'selected=selected';
+		    		}
+		    		$return .= '<option value='.$type_data['type_id'].' title="'.$type_data['type_description'].'" '.$selected.' >'.$type_data['type_title'].'</option>';
+	    			break;
+	    		case 'help':
+	    			$return .= '&bull; '.$type_data['type_title'].' : '.$type_data['type_description']."\n";
+	    			break;
+	    		case 'rows':
+	    			$return[$i]['type_id'] = $type_data['type_id'];
+    				$return[$i]['type_description'] = $type_data['type_description'];
+    				++$i;
+	    			break;
+	    		default:
+    				$return[$type_data['type_id']] = $type_data['type_title'];    			
+	    			break;
+	    	}
+
+	    	$this->get_childs_list($type_id, $type, $return, $selected_id);
+    	}
+
+    	if($type == 'html') $return .= '</select>';
+    	return $return;
+    }
+
+    function get_root_types(){
+    /** 
+	 * Retourne la liste des types qui sont parent
      *
      * @return array
      */
     	$return = array();
     	$info = $this->so_ref_publi_type->search(array('type_active'=>'1'),false,'type_order');
     	foreach((array)$info as $data){
-    		$return[$data['type_id']] = $data['type_title'];
+    		if(empty($data['type_parent'])){ 
+    			$return[$data['type_id']] = $data['type_id'];
+    		}
     	}
 
     	return $return;
     }
-	
+
+    function get_childs_list($type_id, $type, &$return, $selected_id){
+	/**
+	 * Recupere recursivement les enfants de chaque site
+	 *
+	 * @return array
+	 */
+		$childs = $this->so_ref_publi_type->search(array('type_parent' => $type_id),false,'type_order');
+
+		foreach((array)$childs as $child){
+			$label = '';
+			$level = $this->get_level($child['type_id']);
+			for($i=0;$i < $level;$i++){
+				$label .= '-';
+			}
+			
+			switch($type){
+	    		case 'html':
+	    			$selected = '';
+		    		if($child['type_id'] == $selected_id){
+		    			$selected = 'selected=selected';
+		    		}
+		    		$return .= '<option value='.$child['type_id'].' title="'.$child['type_description'].'" '.$selected.' >'.$label.' '.$child['type_title'].'</option>';
+	    			break;
+	    		case 'help':
+	    			$return .= '&bull; '.$child['type_title'].' : '.$child['type_description']."\n";
+	    			break;
+	    		case 'rows':
+	    			$return[$i]['type_id'] = $child['type_id'];
+    				$return[$i]['type_description'] = $child['type_description'];
+    				++$i;
+	    			break;
+	    		default:
+    				$return[$child['type_id']] = $label.' '.$child['type_title'];    			
+	    			break;
+	    	}
+
+			$this->get_childs_list($child['type_id'], $type, $return, $selected_id);
+		}
+
+		return $return;
+	}
+
+	function get_level($type_id){
+	/**
+	 * Retourne le niveau d'un site
+	 *
+	 * @return int
+	 */
+		$type = $this->so_ref_publi_type->read($type_id);
+		$parent = $type['type_parent'];
+
+		$level = 0;
+		while ($parent) {
+			$level++;
+			$type_parent = $this->so_ref_publi_type->read($parent);
+			$parent = $type_parent['type_parent'];
+		}
+
+		return $level;
+	}
 		
 	function get_projects(){
     /**
@@ -505,14 +731,16 @@ class spicademic_bo extends spicademic_so{
 
 		// Simple utilisateur OU Statut archivé => lecture seule
 		$no_write = false;
-		if($GLOBALS['egw_info']['user']['account_id'] != $publi['publi_responsible'] && ($GLOBALS['egw_info']['user']['SpicademicLevel'] < 20 || $publi['publi_status'] == $this->obj_config['archived_pub_status'])){
+		if($GLOBALS['egw_info']['user']['account_id'] != $publi['publi_responsible'] && ($GLOBALS['egw_info']['user']['SpicademicLevel'] < 20 || in_array($publi['publi_status'],explode(',',$this->obj_config['archived_pub_status'])))){
 			$no_write = true;
 		}
 
 		$return = array();
 		$i = 0;
 
-		$type_fields = $this->so_type_field->search(array('type_id' => $type_id),false);
+		$join = 'INNER JOIN spicademic_ref_field ON spicademic_ref_field.field_id = spicademic_ref_type_field.field_id';
+		$order = 'field_order';
+		$type_fields = $this->so_type_field->search(array('type_id' => $type_id),false,$order,'',$wildcard,false,$op,$start,$query['col_filter'],$join);
 		foreach((array)$type_fields as $type_field){
 			// Info champ
 			$field = $this->so_field->read($type_field['field_id']);
@@ -654,7 +882,7 @@ class spicademic_bo extends spicademic_so{
 	 * @return array
 	 */
 		$return = $contacts = array();
-		$i = 3;
+		$i = 4;
 		
 		$contacts = $this->so_contact->search(array('contact_publi' => $publi_id,'contact_role' => $contact_role),false,'contact_order','',$wildcard,false,'AND',$start,$query['col_filter']);
 
