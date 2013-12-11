@@ -41,6 +41,8 @@ class spicademic_ui extends spicademic_bo{
 
 		'mail' 		=> true,
 		'download' 	=> true,
+
+		'admin'		=> true,
 	);
 
 	/**
@@ -381,12 +383,13 @@ class spicademic_ui extends spicademic_bo{
 			if(isset($content['contact']['up'])){
 				foreach((array)$content['contact']['up'] as $contact_id => $data){
 					$contact = $this->so_contact->read($contact_id);
+					// _debug_array($contact);exit;
 					$contact['contact_order'] = $contact['contact_order'] >= 1 ? $contact['contact_order']-1 : $contact['contact_order'];
 					$this->so_contact->data = $contact;
 					$this->so_contact->update($contact,true);
 
 					// Down des contact ayant le nouvel ordre
-					$temp_contacts = $this->so_contact->search(array('contact_order' => (string)$contact['contact_order']),false);
+					$temp_contacts = $this->so_contact->search(array('contact_publi'=>$contact['contact_publi'], 'contact_order' => (string)$contact['contact_order']),false);
 					foreach($temp_contacts as $temp_contact){
 						if($temp_contact['contact_id'] != $contact['contact_id']){
 							$temp_contact['contact_order'] = $temp_contact['contact_order'] + 1;
@@ -405,7 +408,7 @@ class spicademic_ui extends spicademic_bo{
 					$this->so_contact->update($contact,true);
 
 					// Up des contact ayant le nouvel ordre
-					$temp_contacts = $this->so_contact->search(array('contact_order' => (string)$contact['contact_order']),false);
+					$temp_contacts = $this->so_contact->search(array('contact_publi'=>$contact['contact_publi'], 'contact_order' => (string)$contact['contact_order']),false);
 					foreach($temp_contacts as $temp_contact){
 						if($temp_contact['contact_id'] != $contact['contact_id']){
 							$temp_contact['contact_order'] = $contact['contact_order'] >= 1 ? $contact['contact_order']-1 : $contact['contact_order'];
@@ -878,7 +881,7 @@ class spicademic_ui extends spicademic_bo{
 			$extras = $this->so_extra->search(array('publi_id' => $publi['publi_id']),false);
 			foreach((array)$extras as $extra){
 				$field = $this->so_field->read($extra['field_id']);
-				if($field['field_export_bibtex'] && !empty($field['field_bibtex_code']) && ($extra['extra_value'] <> "")){
+				if($field['field_export_bibtex'] && !empty($field['field_bibtex_code'])){
 					$bibtex .= "\t".$field['field_bibtex_code'].' = {'.$extra['extra_value']."},\n";
 				}
 			}
@@ -1616,6 +1619,55 @@ class spicademic_ui extends spicademic_bo{
 		$tpl = new etemplate('spicademic.import');
 		$tpl->read('spicademic.import');
 		$tpl->exec('spicademic.spicademic_ui.import', $content, $sel_options, $readonlys, $content,0);
+	}
+
+	function admin($content = null){
+	/**
+	 * Charge le template index
+	 *
+	 */ 
+		$msg='';
+		if(is_array($content)){
+			list($button) = @each($content['button']);
+			// Clic sur un bouton (save/apply/cancel)
+			switch($button){
+				case 'save':
+				case 'apply':
+					$msg=$this->add_update_config($content);
+					// $GLOBALS['egw_info']['flags']['java_script'] .= "<script language=\"JavaScript\">
+					// 	var referer = opener.location;
+					// 	opener.location.href = referer+(referer.search?'&':'?')+'msg=".addslashes(urlencode($msg))."';</script>";
+					break;
+				default:
+				case 'cancel':
+					echo "<html><body><script>window.close();</script></body></html>\n";
+					$GLOBALS['egw']->common->egw_exit();
+					break;
+			}
+		}
+		
+		// Récupération des données
+		$content = $this->obj_config;
+		
+		// Remplissage des listes
+		$sel_options = array(
+			'default_pub_status' => $this->get_all_publi_status(),
+			'validated_pub_status' => $this->get_all_publi_status(),
+			'archived_pub_status' => $this->get_all_publi_status(),
+			'pending_pub_status' => $this->get_all_publi_status(),
+			'imported_pub_status' => $this->get_all_publi_status(),
+			
+			'default_file_status' => $this->get_file_status(),
+
+			'author_role' => $this->get_roles(),
+			'translator_role' => $this->get_roles(),
+			'editor_role' => $this->get_roles(),
+
+			'xml_date' => $this->get_fields(),
+		);		
+		
+		$tpl = new etemplate('spicademic.admin.general');
+		$tpl->exec('spicademic.spicademic_ui.admin', $content,$sel_options,$no_button, $content);
 	}
 }
 ?>
