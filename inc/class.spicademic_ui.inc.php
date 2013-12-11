@@ -881,7 +881,7 @@ class spicademic_ui extends spicademic_bo{
 			$extras = $this->so_extra->search(array('publi_id' => $publi['publi_id']),false);
 			foreach((array)$extras as $extra){
 				$field = $this->so_field->read($extra['field_id']);
-				if($field['field_export_bibtex'] && !empty($field['field_bibtex_code'])){
+				if($field['field_export_bibtex'] && !empty($field['field_bibtex_code']) && ($extra['extra_value'] <> "")){
 					$bibtex .= "\t".$field['field_bibtex_code'].' = {'.$extra['extra_value']."},\n";
 				}
 			}
