@@ -109,10 +109,12 @@ class spicademic_hooks
 		/***** Menu Imports *****/
 		if ($GLOBALS['egw_info']['user']['apps']['spicademic'] && $location != 'admin' && $location != 'preferences'){
 			$file = array();
-			
+
+			$file['Import publication']=$GLOBALS['egw']->link('/index.php','menuaction=spicademic.spicademic_ui.import');
+			/* Masqué: activer ces 3 lignes plutôt que la précédente si on veut que seuls les admins puissent importer
 			if(spicademic_so::is_manager()){
 				$file['Import publication']=$GLOBALS['egw']->link('/index.php','menuaction=spicademic.spicademic_ui.import');
-			}
+			}*/
 			
 			$file['Imported publications']=$GLOBALS['egw']->link('/index.php','menuaction=spicademic.spicademic_ui.index&view=import');
 

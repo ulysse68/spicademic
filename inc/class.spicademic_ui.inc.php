@@ -456,7 +456,7 @@ class spicademic_ui extends spicademic_bo{
 						$contact_add_id = $_REQUEST['contact_id'];
 					}
 					// Le champ contact est rempli
-					$exist = $this->so_contact->search(array('contact_add_id'=>$contact_add_id,'contact_publi'=>$content['publi_id']),false);
+					$exist = $this->so_contact->search(array('contact_add_id'=>$contact_add_id,'contact_publi'=>$content['publi_id'],'contact_role'=>$content['contact']['contact_role']),false);
 				}else{
 					if($check_account){
 						// Le champ compte est rempli
