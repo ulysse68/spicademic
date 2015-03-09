@@ -288,7 +288,7 @@ $phpgw_baseline = array(
 		'fd' => array(
 			'publi_id' => array('type' => 'int','precision' => '4','nullable' => False),
 			'field_id' => array('type' => 'int','precision' => '4','nullable' => False),
-			'extra_value' => array('type' => 'text'),
+			'extra_value' => array('type' => 'varchar','precision' => '255'),
 			'extra_creator' => array('type' => 'int','precision' => '4'),
 			'extra_created' => array('type' => 'int','precision' => '20'),
 			'extra_modifier' => array('type' => 'int','precision' => '4'),
