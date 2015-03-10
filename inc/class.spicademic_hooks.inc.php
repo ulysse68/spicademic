@@ -82,13 +82,14 @@ class spicademic_hooks
 			$file = array();
 			
 			if(spicademic_so::is_manager()){
-				$file[]=array(
-					'text' => '<a class="textSidebox" href="'.$GLOBALS['egw']->link('/index.php',array('menuaction' => 'spicademic.spicademic_ui.edit')).
-					'" onclick="window.open(this.href,\'_blank\',\'dependent=yes,width=990,height=600,scrollbars=yes,status=yes\');
-					return false;">'.lang('New publication').'</a>',
-					'no_lang' => true,
-					'link' => false,
-				);
+				// $file[]=array(
+				// 	'text' => '<a class="textSidebox" href="'.$GLOBALS['egw']->link('/index.php',array('menuaction' => 'spicademic.spicademic_ui.edit')).
+				// 	'" onclick="window.open(this.href,\'_blank\',\'dependent=yes,width=990,height=600,scrollbars=yes,status=yes\');
+				// 	return false;">'.lang('New publication').'</a>',
+				// 	'no_lang' => true,
+				// 	'link' => false,
+				// );
+				$file['New publication'] = "javascript:egw_openWindowCentered2('".egw::link('/index.php',array('menuaction' => 'spicademic.spicademic_ui.edit'),false)."','_blank',990,600,'yes')";
 			}
 			
 			$file['Pending publications']=$GLOBALS['egw']->link('/index.php','menuaction=spicademic.spicademic_ui.index&view=pending');
@@ -109,7 +110,7 @@ class spicademic_hooks
 		/***** Menu Imports *****/
 		if ($GLOBALS['egw_info']['user']['apps']['spicademic'] && $location != 'admin' && $location != 'preferences'){
 			$file = array();
-
+			
 			$file['Import publication']=$GLOBALS['egw']->link('/index.php','menuaction=spicademic.spicademic_ui.import');
 			/* Masqué: activer ces 3 lignes plutôt que la précédente si on veut que seuls les admins puissent importer
 			if(spicademic_so::is_manager()){
@@ -152,7 +153,7 @@ class spicademic_hooks
 		/***** Menu Admin *****/
 		if ($GLOBALS['egw_info']['user']['apps']['admin'] && $location != 'preferences' && $location != 'spicademic'){
 			$file = array();
-			$file['General']=$GLOBALS['egw']->link('/index.php','menuaction=spicademic.admin_ui.index');
+			$file['General']=$GLOBALS['egw']->link('/index.php','menuaction=spicademic.spicademic_ui.admin');
 
 			if ($location == 'admin'){
 				display_section($appname,$file);
@@ -206,5 +207,31 @@ class spicademic_hooks
 		}
 	}
 
+	static function settings(){
+	 /**
+	 * NOTE : Fonction obligatoire pour la version EGW 1.9 
+	 *
+	 * @return boolean
+	 */
+		$settings = array(
+			// array(
+			// 	'type'  => 'section',
+			// 	'title' => lang('Main settings'),
+			// 	'no_lang'=> true,
+			// 	'xmlrpc' => False,
+			// 	'admin'  => False
+			// ),
+			'setting_code' => array(
+				'type'   => 'select',
+				'label'  => 'Information for this setting',
+				'name'   => 'setting_code',
+				'help'   => 'Additional information for the setting',
+				'values' => $list,
+				'xmlrpc' => True,
+				'admin'  => False,
+			)
+		);
+		return $settings;	// otherwise prefs say it cant find the file ;-)
+	}
 }
 ?>

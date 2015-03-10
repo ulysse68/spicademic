@@ -1048,5 +1048,21 @@ class spicademic_bo extends spicademic_so{
 		
 		return $retour;
 	}
+
+	
+	function get_all_publi_status(){
+    /**
+     * Retourne la liste des statuts de publication
+     *
+     * @return array
+     */
+    	$return = array();
+		$info = $this->so_ref_publi_status->search(array('status_active'=>'1'),false);
+    	foreach((array)$info as $data){
+    		$return[$data['status_id']] = $data['status_label'];
+    	}
+		
+		return $return;
+    }
 }
 ?>

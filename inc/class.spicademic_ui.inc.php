@@ -383,13 +383,12 @@ class spicademic_ui extends spicademic_bo{
 			if(isset($content['contact']['up'])){
 				foreach((array)$content['contact']['up'] as $contact_id => $data){
 					$contact = $this->so_contact->read($contact_id);
-					// _debug_array($contact);exit;
 					$contact['contact_order'] = $contact['contact_order'] >= 1 ? $contact['contact_order']-1 : $contact['contact_order'];
 					$this->so_contact->data = $contact;
 					$this->so_contact->update($contact,true);
 
 					// Down des contact ayant le nouvel ordre
-					$temp_contacts = $this->so_contact->search(array('contact_publi'=>$contact['contact_publi'], 'contact_order' => (string)$contact['contact_order']),false);
+					$temp_contacts = $this->so_contact->search(array('contact_order' => (string)$contact['contact_order']),false);
 					foreach($temp_contacts as $temp_contact){
 						if($temp_contact['contact_id'] != $contact['contact_id']){
 							$temp_contact['contact_order'] = $temp_contact['contact_order'] + 1;
@@ -408,7 +407,7 @@ class spicademic_ui extends spicademic_bo{
 					$this->so_contact->update($contact,true);
 
 					// Up des contact ayant le nouvel ordre
-					$temp_contacts = $this->so_contact->search(array('contact_publi'=>$contact['contact_publi'], 'contact_order' => (string)$contact['contact_order']),false);
+					$temp_contacts = $this->so_contact->search(array('contact_order' => (string)$contact['contact_order']),false);
 					foreach($temp_contacts as $temp_contact){
 						if($temp_contact['contact_id'] != $contact['contact_id']){
 							$temp_contact['contact_order'] = $contact['contact_order'] >= 1 ? $contact['contact_order']-1 : $contact['contact_order'];
@@ -456,7 +455,7 @@ class spicademic_ui extends spicademic_bo{
 						$contact_add_id = $_REQUEST['contact_id'];
 					}
 					// Le champ contact est rempli
-					$exist = $this->so_contact->search(array('contact_add_id'=>$contact_add_id,'contact_publi'=>$content['publi_id'],'contact_role'=>$content['contact']['contact_role']),false);
+					$exist = $this->so_contact->search(array('contact_add_id'=>$contact_add_id,'contact_publi'=>$content['publi_id'],'contact_role'=>$content['contact']['contact_role'],'contact_role'=>$content['contact']['contact_role']),false);
 				}else{
 					if($check_account){
 						// Le champ compte est rempli
@@ -671,7 +670,7 @@ class spicademic_ui extends spicademic_bo{
 
 		// Autocomplétion sur le nom des contacts
 		$this->autocomplete_js();
-		$this->autocomplete_html(&$content);
+		$this->autocomplete_html($content);
 
 		// Retour sur l'onglet où l'utilisateur se trouvait
 		$content[$tabs] = $tab;
@@ -682,7 +681,7 @@ class spicademic_ui extends spicademic_bo{
 		$tpl->exec('spicademic.spicademic_ui.edit', $content, $sel_options, $readonlys, $content,2);
 	}
 
-	function autocomplete_html($content){
+	function autocomplete_html(&$content){
 	/** 
 	 * Code HTML pour l'autocomplétion
 	 * /!\ LES NOMS AVEC DES [] NE SONT PAS ACCEPTE EN JS
@@ -733,11 +732,13 @@ class spicademic_ui extends spicademic_bo{
 		$protocole = 'https';
 		if(empty($_SERVER['HTTPS']))
 			$protocole = 'http';
-
+		/* Les 3 fichiers sont mis dans le sous-dossier "js" pour qu'ils
+		ne soient pas bloqués par le navigateur en passant par https
+		Ils peuvent être téléchargés sur http://code.jquery.com/ */
 		$autocomplete_js = "
-			<link rel='stylesheet' href='http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css' />
-			<script src='http://code.jquery.com/jquery-1.9.1.js'></script>
-			<script src='http://code.jquery.com/ui/1.10.3/jquery-ui.js'></script>
+			<link rel='stylesheet' href='".$GLOBALS['egw_info']['server']['webserver_url']."/spicademic/inc/js/jquery-ui.css' />
+			<script src='".$GLOBALS['egw_info']['server']['webserver_url']."/spicademic/inc/js/jquery-1.11.2.js'></script>
+			<script src='".$GLOBALS['egw_info']['server']['webserver_url']."/spicademic/inc/js/jquery-ui.js'></script>
 			<script type='text/javascript'>
 				$(function() {
 					$( '#new_n_family' ).autocomplete({
@@ -881,7 +882,7 @@ class spicademic_ui extends spicademic_bo{
 			$extras = $this->so_extra->search(array('publi_id' => $publi['publi_id']),false);
 			foreach((array)$extras as $extra){
 				$field = $this->so_field->read($extra['field_id']);
-				if($field['field_export_bibtex'] && !empty($field['field_bibtex_code']) && ($extra['extra_value'] <> "")){
+				if($field['field_export_bibtex'] && !empty($field['field_bibtex_code']) && !empty($extra['extra_value'])){
 					$bibtex .= "\t".$field['field_bibtex_code'].' = {'.$extra['extra_value']."},\n";
 				}
 			}

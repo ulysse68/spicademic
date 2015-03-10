@@ -382,6 +382,21 @@ class spicademic_so extends so_sql{
 		
 		return $msg;
 	}
+
+	function add_update_config($info){
+	/**
+	 * Routine permettant de créer/modifier la config
+	 *
+	 * @param array $content=null
+	 * @return string
+	 */
+		$obj = CreateObject('phpgwapi.config');
+		foreach((array)$info as $id => $value){
+			$obj->save_value($id,$value,'spicademic');
+		}
+		$this->obj_config = $obj->read('spicademic');
+		return lang('Configuration updated');
+	}
 	
 }
 ?>
